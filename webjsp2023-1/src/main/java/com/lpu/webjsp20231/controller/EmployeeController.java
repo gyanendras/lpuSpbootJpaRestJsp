@@ -52,6 +52,16 @@ public class EmployeeController {
 		
 	}
 	
+	@GetMapping("/empdb/namepat/{pat}")
+	@ResponseBody
+	List <Employee> getEmpFromNamePat(@PathVariable String pat) {
+		 List<Employee> op = er.findByNameLike(pat);
+		   return op;
+		
+	}
+	
+	
+	
 	@GetMapping("/empinj")
 	@ResponseBody
 	Employee getInjectedEmp() {
