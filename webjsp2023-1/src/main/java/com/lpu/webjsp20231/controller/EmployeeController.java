@@ -1,14 +1,23 @@
 package com.lpu.webjsp20231.controller;
 
+import java.util.Optional;
+
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.lpu.webjsp20231.domain.Employee;
+import com.lpu.webjsp20231.repo.EmployeeRepository;
 
 @Controller
 public class EmployeeController {
+	@Autowired
+	Employee empInj ; // Field Injection, Setter, COnstructor
+	
+	@Autowired
+	EmployeeRepository er;
 	
 	@GetMapping("/greet")
 	@ResponseBody
@@ -24,5 +33,26 @@ public class EmployeeController {
 		return new Employee(name,id.intValue(),120000);
 		
 	}
+	
+	@GetMapping("/empdb/{id}")
+	@ResponseBody
+	Employee getEmployeeFromDB(@PathVariable Integer id) {
+		 Optional<Employee> op = er.findById(id);
+		   return op.get();
+		
+	}
+	
+	@GetMapping("/empinj")
+	@ResponseBody
+	Employee getInjectedEmp() {
+		return empInj;
+	}
+	
+	@GetMapping("/time")
+	@ResponseBody
+	String getDate() {
+		return "date";
+	}
+	
 
 }

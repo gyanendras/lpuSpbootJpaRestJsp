@@ -1,0 +1,15 @@
+package com.lpu.webjsp20231;
+
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
+
+import com.lpu.webjsp20231.domain.Employee;
+
+@Configuration
+public class config {
+	@Bean // dependecy injection by type and name
+	Employee getEmployee(){
+		return new Employee("Garima2",123,200000);
+	}
+
+}

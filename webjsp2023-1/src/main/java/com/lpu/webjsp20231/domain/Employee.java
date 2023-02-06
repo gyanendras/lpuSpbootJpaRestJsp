@@ -1,6 +1,18 @@
 package com.lpu.webjsp20231.domain;
 
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
+import jakarta.persistence.Table;
+import jakarta.persistence.Transient;
+
+@Entity
+@Table(name="employees")
 public class Employee implements Comparable {
+	
+	public Employee() {
+		
+	}
 	
 	@Override
 	public int hashCode() {
@@ -24,8 +36,15 @@ public class Employee implements Comparable {
 		return true;
 	}
 
+	@Column(name="first_name")
 	String name;
+	
+	@Id
+	@Column(name="employee_id")
 	int empId;
+	
+	
+	@Transient
 	double salary;
 	
 	public Employee( int empId) {
