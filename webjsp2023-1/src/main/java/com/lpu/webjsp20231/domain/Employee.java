@@ -43,6 +43,9 @@ public class Employee implements Comparable {
 	@Column(name="employee_id")
 	int empId;
 	
+	@Column(name="job_id")
+	String jobId;
+	
 	
 	@Transient
 	double salary;
@@ -85,6 +88,14 @@ public class Employee implements Comparable {
 	}
 
 	
+	public String getJobId() {
+		return jobId;
+	}
+
+	public void setJobId(String jobId) {
+		this.jobId = jobId;
+	}
+
 	public int compareTo(Object o) {
 		Employee e = (Employee)o;
 		return this.empId - e.getEmpId();

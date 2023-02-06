@@ -1,5 +1,6 @@
 package com.lpu.webjsp20231.controller;
 
+import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -39,6 +40,14 @@ public class EmployeeController {
 	Employee getEmployeeFromDB(@PathVariable Integer id) {
 		 Optional<Employee> op = er.findById(id);
 		   return op.get();
+		
+	}
+	
+	@GetMapping("/empdb/job/{jid}")
+	@ResponseBody
+	List <Employee> getEmpWithJIdFromDB(@PathVariable String jid) {
+		 List<Employee> op = er.findByJobId(jid);
+		   return op;
 		
 	}
 	
