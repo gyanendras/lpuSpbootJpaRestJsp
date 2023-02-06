@@ -15,11 +15,13 @@ public class EmployeeController {
 	String hello() {
 		
 		return "<h1>Hello World!- It works</h1>";
-	}
+	}  
 	
-	@GetMapping("/emp/{id}")
-	Employee getEmployee(@PathVariable int id) {
-		return new Employee(id);
+	@GetMapping("/emp/{id}/{name}")
+	@ResponseBody
+	Employee getEmployee(@PathVariable Integer id,@PathVariable String name) {
+		 //Integer intId = Integer.parseInt(id);
+		return new Employee(name,id.intValue(),120000);
 		
 	}
 
