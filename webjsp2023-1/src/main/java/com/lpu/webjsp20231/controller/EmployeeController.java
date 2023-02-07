@@ -13,6 +13,9 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.lpu.webjsp20231.domain.Employee;
 import com.lpu.webjsp20231.repo.EmployeeRepository;
 
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
+
 @Controller
 public class EmployeeController {
 	@Autowired
@@ -69,9 +72,17 @@ public class EmployeeController {
 	}
 	
 	@GetMapping("/time")
-	@ResponseBody
-	String getDate() {
+	String getDate(HttpServletRequest req, HttpServletResponse res) {
+		req.setAttribute("emp", new Employee(100));
 		return "date";
+	}
+	
+
+	@GetMapping("/emplist/job/{jid}")
+	String getEmpsOfAJob(HttpServletRequest req, HttpServletResponse res,@PathVariable String jid ) {
+		List<Employee> op = er.findByJobId(jid);
+		req.setAttribute("empList", op);
+		return "employee";
 	}
 	
 	@PostMapping("/new/emp/{empid}")
